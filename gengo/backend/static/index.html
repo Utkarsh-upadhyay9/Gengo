@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gengo API Server</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2563eb;
+        }
+        h2 {
+            margin-top: 2rem;
+            color: #4b5563;
+        }
+        .endpoint {
+            background-color: #f9fafb;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .method {
+            font-weight: bold;
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+        .get {
+            background-color: #10b981;
+            color: white;
+        }
+        .post {
+            background-color: #f59e0b;
+            color: white;
+        }
+        .put {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .delete {
+            background-color: #ef4444;
+            color: white;
+        }
+        code {
+            background-color: #f3f4f6;
+            padding: 0.25rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gengo API Server</h1>
+    <p>This is the API server for the Gengo language learning application.</p>
+    
+    <h2>API Documentation</h2>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <code>/api/health</code>
+        <p>Check if the API server is up and running.</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <code>/api/auth/login</code>
+        <p>Log in to the application.</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <code>/api/users/me</code>
+        <p>Get the current user's profile.</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <code>/api/sessions/recent</code>
+        <p>Get recent practice sessions.</p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <code>/api/speech/analyze</code>
+        <p>Upload and analyze speech recording.</p>
+    </div>
+    
+    <h2>Frontend Development</h2>
+    <p>The frontend application is served separately using Trunk.</p>
+    <p>Run <code>cd ../frontend && trunk serve</code> to start the frontend development server.</p>
+</body>
+</html>

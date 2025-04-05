@@ -1,0 +1,6 @@
+﻿/target/
+**/*.rs.bk
+Cargo.lock
+dist/
+node_modules/
+.trunk/

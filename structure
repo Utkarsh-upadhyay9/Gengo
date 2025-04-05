@@ -1,0 +1,63 @@
+gengo/
+├── Cargo.toml                  # Workspace configuration
+├── .gitignore                  # Git ignore file
+├── README.md                   # Project documentation
+│
+├── backend/                    # Backend Rocket API
+│   ├── Cargo.toml              # Backend dependencies
+│   ├── .env                    # Backend environment variables
+│   ├── Rocket.toml             # Rocket configuration
+│   └── src/                    # Backend code
+│       ├── main.rs             # Entry point
+│       ├── api/                # API endpoints
+│       │   ├── mod.rs          # Export module
+│       │   ├── users.rs        # User endpoints
+│       │   ├── sessions.rs     # Session endpoints
+│       │   ├── profile.rs      # Profile endpoints
+│       │   └── feedback.rs     # Feedback endpoints
+│       ├── db/                 # Database layer
+│       │   ├── mod.rs          # Export module
+│       │   ├── connection.rs   # Database connection
+│       │   ├── schema.rs       # Database schema
+│       │   └── models/         # Data models
+│       │       ├── mod.rs      # Export module
+│       │       ├── user.rs     # User model
+│       │       ├── profile.rs  # Profile model
+│       │       ├── session.rs  # Session model
+│       │       └── feedback.rs # Feedback model
+│       ├── speech/             # Speech processing
+│       │   ├── mod.rs          # Export module
+│       │   ├── recorder.rs     # Audio recording
+│       │   ├── recognition.rs  # Speech recognition
+│       │   ├── analysis/       # Speech analysis
+│       │   │   ├── mod.rs      # Export module
+│       │   │   ├── grammar.rs  # Grammar analysis
+│       │   │   └── pronunciation.rs # Pronunciation analysis
+│       │   └── visualization.rs # Visualization
+│       ├── error.rs            # Error handling
+│       └── config.rs           # Configuration
+│
+└── frontend/                   # Leptos frontend
+    ├── Cargo.toml              # Frontend dependencies
+    ├── index.html              # HTML template
+    ├── Trunk.toml              # Trunk configuration for dev server
+    ├── src/                    # Frontend code
+    │   ├── main.rs             # Entry point
+    │   ├── app.rs              # Main component
+    │   ├── api/                # API client
+    │   │   ├── mod.rs          # Export module
+    │   │   ├── users.rs        # User API client
+    │   │   ├── sessions.rs     # Session API client
+    │   │   └── profile.rs      # Profile API client
+    │   └── components/         # UI components
+    │       ├── mod.rs          # Export module
+    │       ├── navbar.rs       # Navigation bar
+    │       ├── recorder.rs     # Audio recorder
+    │       ├── dashboard.rs    # Dashboard component
+    │       ├── practice.rs     # Practice component
+    │       └── feedback.rs     # Feedback component
+    └── public/                 # Static assets
+        ├── styles.css          # CSS styles
+        ├── audio-recorder.js   # Audio recording JS
+        └── images/             # Image assets
+            └── logo.svg        # Logo
