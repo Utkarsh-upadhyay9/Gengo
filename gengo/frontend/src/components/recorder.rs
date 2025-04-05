@@ -1,5 +1,8 @@
 use leptos::*;
 use wasm_bindgen::prelude::*;
+fn window() -> web_sys::Window {
+    web_sys::window().expect("no global `window` exists")
+}
 
 #[component]
 pub fn AudioRecorder() -> impl IntoView {
@@ -37,10 +40,10 @@ pub fn AudioRecorder() -> impl IntoView {
                 let closure = Closure::wrap(Box::new(move || {
                     // Update visualization in real-time
                     set_visualization_data.update(|data| {
-                        data.iter().map(|&h| {
+                        *data = data.iter().map(|&h| {
                             let random = js_sys::Math::random() * 40.0;
                             (10.0 + random) as usize
-                        }).collect::<Vec<_>>()
+                        }).collect::<Vec<_>>();
                     });
                 }) as Box<dyn Fn()>);
 
