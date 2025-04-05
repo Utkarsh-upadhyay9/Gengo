@@ -54,7 +54,7 @@ pub fn AudioRecorder() -> impl IntoView {
                 closure.forget(); // Prevent the closure from being dropped
                 
                 on_cleanup(move || {
-                    window().clear_interval_with_handle(handle);
+                    window().clear_interval_with_handle(handle.expect("Failed to get interval handle"));
                 });
             }
         });
@@ -93,10 +93,12 @@ pub fn AudioRecorder() -> impl IntoView {
             <div class="recorder-controls">
                 {move || if recording.get() {
                     view! {
-                        <button class="btn btn-stop" on:click=stop_recording>
-                            <span class="btn-icon">"⏹"</span>
-                            <span class="btn-text">Stop</span>
-                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-stop" on:click=stop_recording>
+                                <span class="btn-icon">"⏹"</span>
+                                <span class="btn-text">Stop</span>
+                            </button>
+                        </div>
                     }
                 } else if audio_url.get().is_some() {
                     view! {
