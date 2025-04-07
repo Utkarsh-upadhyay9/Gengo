@@ -1,0 +1,159 @@
+/* AudioRecorder.css - Styles for the audio recorder component */
+
+.recorder-container {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  max-width: 650px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.recorder-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(67, 97, 238, 0.08), transparent 70%);
+  z-index: -1;
+}
+
+.audio-visualizer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 120px;
+  margin-bottom: 30px;
+  gap: 6px;
+  padding: 0 1rem;
+}
+
+.visualizer-bar {
+  width: 6px;
+  background: linear-gradient(to top, var(--primary), var(--accent));
+  border-radius: 6px;
+  transition: height 0.1s ease-in-out;
+  box-shadow: 0 0 8px rgba(67, 97, 238, 0.5);
+  position: relative;
+}
+
+.visualizer-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.5));
+  opacity: 0.5;
+  border-radius: 6px;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; transform: scaleY(0.95); }
+  50% { opacity: 1; transform: scaleY(1.05); }
+  100% { opacity: 0.7; transform: scaleY(0.95); }
+}
+
+.recording .visualizer-bar {
+  animation: pulse 1.2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.btn-record {
+  background: linear-gradient(90deg, var(--accent), #e5267e);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-record:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(247, 37, 133, 0.4);
+}
+
+.btn-stop {
+  background: rgba(30, 41, 59, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-stop:hover {
+  background: rgba(15, 23, 42, 0.9);
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  color: white;
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 16px rgba(67, 97, 238, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.audio-player {
+  margin-top: 25px;
+  background: rgba(15, 23, 42, 0.5);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+}
+
+.audio-player audio {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  filter: invert(0.85);
+  mix-blend-mode: color-dodge;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

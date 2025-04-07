@@ -1,4 +1,4 @@
-// AudioRecorder.tsx - Audio recording component
+// components/AudioRecorder.tsx - with better visualization
 import { useState, useRef, useEffect } from 'react';
 import '../styles/AudioRecorder.css';
 
@@ -9,7 +9,9 @@ interface AudioRecorderProps {
 const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) => {
   const [recording, setRecording] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const [visualizationData, setVisualizationData] = useState([10, 20, 15, 30, 25, 40, 35, 50, 45]);
+  const [visualizationData, setVisualizationData] = useState(
+    Array.from({ length: 16 }, () => Math.floor(Math.random() * 20) + 10)
+  );
   
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -64,6 +66,13 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
   const stopRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
+      
+      // Stop all tracks in the stream
+      if (mediaRecorderRef.current.stream) {
+        const tracks = mediaRecorderRef.current.stream.getTracks();
+        tracks.forEach((track) => track.stop());
+      }
+      
       mediaRecorderRef.current = null;
       setRecording(false);
       
@@ -73,9 +82,22 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
       }
     }
   };
+
+  const handleSubmit = () => {
+    if (audioUrl && onRecordingComplete) {
+      // Get the blob from audioUrl and pass it to onRecordingComplete
+      fetch(audioUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          if (onRecordingComplete) {
+            onRecordingComplete(blob);
+          }
+        });
+    }
+  };
   
   return (
-    <div className="recorder-container card">
+    <div className={`recorder-container card ${recording ? 'recording' : ''}`}>
       <div className="audio-visualizer">
         {visualizationData.map((height, index) => {
           const adjustedHeight = recording 
@@ -88,8 +110,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
               className="visualizer-bar"
               style={{
                 height: `${adjustedHeight}px`,
-                animationDelay: `${index * 100}ms`
-              }}
+                animationDelay: `${index * 0.05}s`,
+                '--index': `${index}`
+              } as React.CSSProperties}
             />
           );
         })}
@@ -100,7 +123,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
           <div className="btn-group">
             <button className="btn btn-stop" onClick={stopRecording}>
               <span className="btn-icon">⏹</span>
-              <span className="btn-text">Stop</span>
+              <span className="btn-text">Stop Recording</span>
             </button>
           </div>
         ) : audioUrl ? (
@@ -108,8 +131,8 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
             <button className="btn btn-secondary" onClick={() => setAudioUrl(null)}>
               <span className="btn-text">Record Again</span>
             </button>
-            <button className="btn btn-primary">
-              <span className="btn-text">Submit</span>
+            <button className="btn btn-primary" onClick={handleSubmit}>
+              <span className="btn-text">Submit Recording</span>
             </button>
           </div>
         ) : (
@@ -132,3 +155,4 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 };
 
 export default AudioRecorder;
+

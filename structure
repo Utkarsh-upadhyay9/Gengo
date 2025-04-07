@@ -1,69 +1,81 @@
-gengo/
- Cargo.toml                  # Workspace configuration
- .gitignore                  # Git ignore file
-+-- README.md                   # Project documentation
-�
-+-- backend/                    # Backend Rocket API
-�   +-- Cargo.toml              # Backend dependencies
-�   +-- .env                    # Backend environment variables
-�   +-- Rocket.toml             # Rocket configuration
-    src/                    # Backend code
-        main.rs             # Entry point
-        api/                # API endpoints
-           mod.rs          # Export module
-           users.rs        # User endpoints
-           sessions.rs     # Session endpoints
-           profile.rs      # Profile endpoints
-           feedback.rs     # Feedback endpoints
-        db/                 # Database layer
-           mod.rs          # Export module
-           connection.rs   # Database connection
-           schema.rs       # Database schema
-           models/         # Data models
-               mod.rs      # Export module
-               user.rs     # User model
-               profile.rs  # Profile model
-               session.rs  # Session model
-               feedback.rs # Feedback model
-        speech/             # Speech processing
-           mod.rs          # Export module
-           recorder.rs     # Audio recording
-           recognition.rs  # Speech recognition
-           analysis/       # Speech analysis
-              mod.rs      # Export module
-              grammar.rs  # Grammar analysis
-              pronunciation.rs # Pronunciation analysis
-           visualization.rs # Visualization
-        error.rs            # Error handling
-        config.rs           # Configuration
-
- gengo-frontend/             # React TypeScript Frontend
-     public/                 # Public assets
-        index.html          # HTML template
-        favicon.ico         # Favicon
-        images/             # Image assets
-            logo.svg        # Logo
-     src/                    # Source code
-        components/         # Reusable UI components
-           Navbar.tsx      # Navigation bar component
-           AudioRecorder.tsx # Audio recording component
-           Footer.tsx      # Footer component
-        pages/              # Page components
-           Home.tsx        # Landing page
-           Dashboard.tsx   # User dashboard
-           Practice.tsx    # Practice session page
-           Feedback.tsx    # Feedback display page
-           NotFound.tsx    # 404 page
-        services/           # API and service modules
-           api.ts          # API client for backend communication
-        types/              # TypeScript type definitions
-           index.ts        # Shared types and interfaces
-        styles/             # CSS stylesheets
-           AudioRecorder.css # Recorder component styles
-           Feedback.css    # Feedback page styles
-           Practice.css    # Practice page styles
-        hooks/              # Custom React hooks
-        App.tsx             # Main application component
-        index.tsx           # Application entry point
-     package.json            # NPM dependencies and scripts
-     tsconfig.json           # TypeScript configuration
+/gengo
+│
+├── Cargo.toml                  # Workspace configuration
+├── .gitignore                  # Git ignore file
+├── README.md                   # Project documentation
+│
+├── /backend                    # Rust Rocket API
+│   ├── Cargo.toml              # Backend dependencies
+│   ├── .env                    # Environment variables
+│   ├── Rocket.toml             # Rocket configuration
+│   └── /src                    # Backend source code
+│       ├── main.rs             # Application entry point
+│       │
+│       ├── /api                # API endpoints
+│       │   ├── mod.rs          # Module exports
+│       │   ├── users.rs        # User endpoints
+│       │   ├── sessions.rs     # Session endpoints
+│       │   ├── profile.rs      # Profile endpoints
+│       │   └── feedback.rs     # Feedback endpoints
+│       │
+│       ├── /db                 # Database layer
+│       │   ├── mod.rs          # Module exports
+│       │   ├── connection.rs   # Database connection
+│       │   ├── schema.rs       # Database schema
+│       │   └── /models         # Data models
+│       │       ├── mod.rs      # Module exports
+│       │       ├── user.rs     # User model
+│       │       ├── profile.rs  # Profile model
+│       │       ├── session.rs  # Session model
+│       │       └── feedback.rs # Feedback model
+│       │
+│       ├── /speech             # Speech processing
+│       │   ├── mod.rs          # Module exports
+│       │   ├── recorder.rs     # Audio recording
+│       │   ├── recognition.rs  # Speech recognition
+│       │   ├── /analysis       # Speech analysis
+│       │   │   ├── mod.rs      # Module exports
+│       │   │   ├── grammar.rs  # Grammar analysis
+│       │   │   └── pronunciation.rs # Pronunciation analysis
+│       │   └── visualization.rs # Audio visualization
+│       │
+│       ├── error.rs            # Error handling
+│       └── config.rs           # Configuration
+│
+└── /gengo-frontend             # React TypeScript Frontend
+    ├── /public                 # Static assets
+    │   ├── index.html          # HTML template
+    │   ├── favicon.ico         # Site favicon
+    │   └── /images             # Image assets
+    │       └── logo.svg        # Logo file
+    │
+    ├── /src                    # Frontend source code
+    │   ├── /components         # Reusable UI components
+    │   │   ├── Navbar.tsx      # Navigation bar
+    │   │   ├── AudioRecorder.tsx # Recording component
+    │   │   └── Footer.tsx      # Page footer
+    │   │
+    │   ├── /pages              # Page components
+    │   │   ├── Home.tsx        # Landing page
+    │   │   ├── Dashboard.tsx   # User dashboard
+    │   │   ├── Practice.tsx    # Practice page
+    │   │   ├── Feedback.tsx    # Feedback page
+    │   │   └── NotFound.tsx    # 404 page
+    │   │
+    │   ├── /services           # API services
+    │   │   └── api.ts          # Backend API client
+    │   │
+    │   ├── /types              # TypeScript types
+    │   │   └── index.ts        # Type definitions
+    │   │
+    │   ├── /styles             # CSS stylesheets
+    │   │   ├── AudioRecorder.css # Recorder styles
+    │   │   ├── Feedback.css    # Feedback page styles
+    │   │   └── Practice.css    # Practice page styles
+    │   │
+    │   ├── /hooks              # Custom React hooks
+    │   ├── App.tsx             # Main App component
+    │   └── index.tsx           # Application entry point
+    │
+    ├── package.json            # NPM dependencies
+    └── tsconfig.json           # TypeScript configuration

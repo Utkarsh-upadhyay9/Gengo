@@ -1,0 +1,147 @@
+/* Feedback.css - Styles for the feedback page */
+
+.feedback-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.feedback-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #fff, #c7d2fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.feedback-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--primary) calc(var(--percent) * 1%),
+    rgba(255, 255, 255, 0.1) 0
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+  box-shadow: 0 0 30px rgba(67, 97, 238, 0.3);
+}
+
+.score-circle::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  z-index: 1;
+}
+
+.score-value {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #fff, #c7d2fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.score-label {
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.feedback-details {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 40px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.feedback-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.feedback-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.feedback-section h2 {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.feedback-section h2::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 25px;
+  background: linear-gradient(to bottom, var(--primary), var(--accent));
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.suggestions-list li {
+  position: relative;
+  padding: 15px 0 15px 35px;
+  margin-bottom: 10px;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.suggestions-list li:before {
+  content: '→';
+  position: absolute;
+  left: 12px;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.feedback-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.feedback-actions .btn {
+  padding: 12px 25px;
+}
