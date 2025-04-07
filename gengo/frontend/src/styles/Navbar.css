@@ -1,74 +1,84 @@
+/* Main navbar container with glass-morphism effect */
 .navbar {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.8); /* Semi-transparent dark background */
+  backdrop-filter: blur(10px); /* Creates frosted glass effect */
   border-bottom: 1px solid var(--glass-border);
-  position: sticky;
+  position: sticky; /* Keeps navbar at top during scroll */
   top: 0;
-  z-index: 1000;
+  z-index: 1000; /* Ensures navbar stays above other content */
   padding: 1rem 0;
 }
 
+/* Layout container for navbar content */
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Spreads items across container */
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; /* Constrains width on larger screens */
+  margin: 0 auto; /* Centers the container */
   padding: 0 1.5rem;
 }
 
+/* Logo styling with custom typography */
 .navbar-logo {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-light);
-  text-decoration: none;
-  letter-spacing: -0.02em;
+  text-decoration: none; /* Removes underline from link */
+  letter-spacing: -0.02em; /* Tighter letter spacing for modern look */
   display: flex;
   align-items: center;
 }
 
+/* Gradient text effect for logo highlight */
 .logo-highlight {
   background: linear-gradient(90deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text; /* For Safari support */
+  background-clip: text; /* Makes gradient apply to text only */
+  color: transparent; /* Makes text transparent to show gradient */
   margin-left: 0.2rem;
 }
 
+/* Navigation menu layout */
 .nav-menu {
   display: flex;
-  gap: 2rem;
+  gap: 2rem; /* Modern spacing between nav items */
 }
 
+/* Individual navigation link styling */
 .nav-link {
-  color: var(--text-dim);
+  color: var(--text-dim); /* Dimmed color for inactive links */
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0;
-  position: relative;
-  transition: color 0.3s ease;
+  position: relative; /* Required for the underline effect positioning */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
+/* Hover and active state for navigation links */
 .nav-link:hover, .nav-link.active {
-  color: var(--text-light);
+  color: var(--text-light); /* Brighter text for active/hovered links */
 }
 
+/* Animated underline effect for navigation links */
 .nav-link::after {
-  content: '';
+  content: ''; /* Required for pseudo-elements */
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 0; /* Starts with 0 width */
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, var(--primary), var(--accent)); /* Gradient underline */
+  transition: width 0.3s ease; /* Animate width change for sliding effect */
 }
 
+/* Expand underline on hover/active state */
 .nav-link:hover::after, .nav-link.active::after {
-  width: 100%;
+  width: 100%; /* Expands to full width on hover/active */
 }
 
+/* User area container (login/profile) */
 .nav-user {
   display: flex;
   align-items: center;
