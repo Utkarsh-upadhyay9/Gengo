@@ -7,6 +7,13 @@
   top: 0;
   z-index: 1000; /* Ensures navbar stays above other content */
   padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+/* Scrolled state for navbar (more solid background) */
+.navbar.scrolled {
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Layout container for navbar content */
@@ -19,16 +26,26 @@
   padding: 0 1.5rem;
 }
 
-/* Logo styling with custom typography */
-.navbar-logo {
+/* Logo container styling */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Logo icon styling */
+.logo-icon {
+  height: 32px;
+  width: 32px;
+}
+
+/* Logo text styling */
+.logo-text {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-light);
-  text-decoration: none; /* Removes underline from link */
-  letter-spacing: -0.02em; /* Tighter letter spacing for modern look */
-  display: flex;
-  align-items: center;
+  letter-spacing: -0.02em;
 }
 
 /* Gradient text effect for logo highlight */
@@ -37,7 +54,14 @@
   -webkit-background-clip: text; /* For Safari support */
   background-clip: text; /* Makes gradient apply to text only */
   color: transparent; /* Makes text transparent to show gradient */
-  margin-left: 0.2rem;
+}
+
+/* Remove the old logo styling since we're using the new component */
+.navbar-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  z-index: 1001;
 }
 
 /* Navigation menu layout */
@@ -82,4 +106,92 @@
 .nav-user {
   display: flex;
   align-items: center;
+}
+
+/* Login button styling */
+.btn-login {
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+/* Mobile menu toggle button (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--text-light);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu toggle animation */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex; /* Show menu toggle on mobile */
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--bg-dark);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    gap: 1.5rem;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav-menu.active {
+    right: 0; /* Slide in from right when active */
+  }
+  
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+  }
+  
+  .nav-user {
+    display: none; /* Hide on mobile, can be shown in the mobile menu instead */
+  }
+  
+  /* Add user controls to mobile menu */
+  .nav-menu.active .nav-user {
+    display: flex;
+    margin-top: 1.5rem;
+  }
 }

@@ -1,5 +1,6 @@
 // App.tsx - Main application component with routing
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 // Import components
@@ -13,7 +14,7 @@ import Practice from './pages/Practice';
 import Feedback from './pages/Feedback';
 import NotFound from './pages/NotFound';
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
@@ -21,16 +22,18 @@ function App() {
         <main className="app-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/practice" element={<Practice />} />
-            <Route path="/practice/:id/feedback" element={<Feedback />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/feedback" element={<Feedback />} />
+            {/* Add more routes as needed */}
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </main>
         <Footer />
       </div>
     </Router>
   );
-}
+};
 
 export default App;
